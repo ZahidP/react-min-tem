@@ -11,6 +11,8 @@
 - *First*: `npm install`
 - *Run*: `npm start`
 - *Needs*: A mongo process running. If you have it locally you can run `mongod`. It will look on the default port **27017**.
+  - *Actually I have turned off MongoDB by default since the calls to the database were not yet built out.*
+  - *MongoDB can be turned on again by setting the variable to true, atop the __server.js__ file but all it does is initialize the database.*
 - *Development*: Run `webpack -w -d --display-error-details` to see your updated changes.
 - That should be it.
 
@@ -32,3 +34,5 @@ Contains all relevant information for a doctor user.
 Contains all relevant information for a patient user.
 - Patient's Name, Address, DOB
 - Upload Form
+
+**Not yet done**: Backend calls, form/file upload (will probably use whatfg-fetch or node-fetch)
