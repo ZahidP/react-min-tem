@@ -1,0 +1,76 @@
+{
+  "Doctors": [
+    {
+      "id":"doc123",
+      "login":"mrmanager",
+      "name":"mr.doctor",
+      "patients":["pat123","pat124"]
+    },
+    {
+      "id":"doc123",
+      "login":"drspaceman",
+      "name":"Doctor Spaceman",
+      "patients":["pat125","pat126"]
+    }
+  ],
+  "Patients": [
+    {
+      "id":"pat123",
+      "login":"healthydough",
+      "password": "password",
+      "name":"John Dough",
+      "dob":"11-01-1989",
+      "address":"1234 summer sugar lane",
+      "visit_history":[
+        {
+          "id":"128abc", "date":"03-16-2016", "notes":"Good health for this guy."
+        }
+      ],
+      "documents":["doc_1_pat123"]
+    },
+    {
+      "id":"pat124",
+      "login":"whatsupdoc",
+      "password": "password",
+      "name":"Jane Dough",
+      "dob":"11-01-1989",
+      "address":"1234 summer sugar lane",
+      "visit_history":[
+        {
+          "id":"139abc", "date":"03-18-2016", "notes":"Good health for this lady."
+        }
+      ],
+      "documents":["doc_1_pat124"]
+    },
+    {
+      "id":"pat125",
+      "login":"djdoe",
+      "password": "password",
+      "name":"John Doe",
+      "dob":"11-01-1988",
+      "address":"1235 summer sugar lane",
+      "visit_history":[
+        {
+          "id":"192abc", "date":"02-07-2016", "notes":"High blood pressure."
+        }
+      ],
+      "documents":[]
+    },
+    {
+      "id":"pat126",
+      "login":"chessmaster",
+      "name":"Jane Doe",
+      "dob":"11-01-1988",
+      "address":"1235 summer sugar lane",
+      "visit_history":[
+        {
+          "id":"148abc", "date":"03-01-2016", "notes":"Low blood pressure."
+        }
+      ],
+      "documents":[]
+    },
+  ],
+  "Documents": [
+
+  ]
+}
