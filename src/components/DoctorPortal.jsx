@@ -12,7 +12,6 @@ class DoctorPortal extends React.Component {
     super(props);
   }
   componentDidMount() {
-
   }
 
   /* non-state methods */
@@ -20,11 +19,11 @@ class DoctorPortal extends React.Component {
     let doctorname = '';
     let charts = [
       {
-        chartName: "Metric A",
+        chartName: "A",
         chartData: this.props.patientdata[0].metrics['A']
       },
       {
-        chartName: "Metric B",
+        chartName: "B",
         chartData: this.props.patientdata[0].metrics['B']
       }
     ];
@@ -42,17 +41,20 @@ class DoctorPortal extends React.Component {
         </div>)
     });
     // patient data in charts
+    d3.selectAll("svg").remove();
     let chartTemplate = charts.map((chartInfo) => {
-      <div className="metric-col col-md-4">
-        <div className="metric-header">
-          {chartInfo.chartName}
+      console.log(chartInfo);
+      return (<div><div className="metric-col col-md-4">
+        <div className={`metric-header ${night}`}>
+          Metric {chartInfo.chartName}
         </div>
-        <div className="metric-chart">
+        <div className="metric-chart" id={`chart${chartInfo.chartName}`}>
           <ChartComponent
+            key={chartInfo.chartName}
             name={chartInfo.chartName}
-            data={chartInfo.data} />
+            data={chartInfo.chartData} />
         </div>
-      </div>
+      </div></div>)
     })
 
     return (
@@ -94,10 +96,8 @@ class DoctorPortal extends React.Component {
                 {/*Patient Key Metrics Bloc*/}
                 <h3 className={`basic-info-title ${night}`}> Key Metrics </h3>
                 <div className="basic-info">
+                  <div className="metric-cols col-md-12">
                     {chartTemplate}
-                  <div className="metric-col col-md-4">
-                    <div className="metric-header"></div>
-                    <div className="metric-chart"></div>
                   </div>
                 </div>
               </div>

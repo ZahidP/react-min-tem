@@ -5,7 +5,9 @@ body {
 
 .main.night {
   background-color: rgba(54,54,54,1);
-  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  min-height: 680px;
 }
 
 .login-button.night {
@@ -159,4 +161,8 @@ input[type="file"].night {
 
 .welcome.night {
   color: rgba(200,160,100,1);
+}
+
+.metric-header.night {
+  color: rgba(160,160,160,1);
 }

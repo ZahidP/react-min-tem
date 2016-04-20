@@ -32,8 +32,18 @@ var data = {
         }
       ],
       "metrics": {
-          "A": [85,90,83,82],
-          "B": [155,150,153,152]
+          "A": [
+            {'number':85, 'visit':1},
+            {'number':89, 'visit':2},
+            {'number':75, 'visit':3},
+            {'number':78, 'visit':4}
+          ],
+          "B": [
+            {'number':155, 'visit':1},
+            {'number':159, 'visit':2},
+            {'number':165, 'visit':3},
+            {'number':168, 'visit':4}
+          ],
       },
       "documents":["doc_1_pat123"]
     },
