@@ -17,7 +17,8 @@ class Home extends React.Component {
       patients: data.Patients,
       loggedInAs: 'doctor',
       showLogin: true,
-      showFailedLogin: false
+      showFailedLogin: false,
+      night: true
     }
   }
   componentDidMount() {
@@ -28,7 +29,8 @@ class Home extends React.Component {
       loggedInAs: false
     })
   }
-  componentWillUnmout() {
+  componentWillUnmount() {
+    // code
   }
   /* non-state methods */
   onChange() {
@@ -52,9 +54,21 @@ class Home extends React.Component {
         });
       });
   }
+  toggleNightMode() {
+    if (this.state.night === true) {
+      this.setState({
+        night: false
+      })
+    }
+    else {
+      this.setState({
+        night: true
+      })
+    }
+  }
   onLogin(formData,type) {
     let loggedIn= {};
-    let db = type === 'doctor' ? 'doctors' : 'patients';
+    let db = type === 'doctor' ? `doctors` : `patients`;
     this.state[db].map((user) => {
       if (user.login === formData.username &&
           (user.password === formData.password)) {
@@ -76,19 +90,22 @@ class Home extends React.Component {
 
 
   render() {
+    let night = this.state.night ? 'night' : '';
     let doctor = 'doctor';
     let patient = 'patient';
     let loggedInAs = this.state.loggedInAs;
     let portal = '';
     let login = '';
     let loginFailed = '';
-    let showLogin = this.state.showLogin ? 'visible' : 'hidden';
+    let showLogin = this.state.showLogin ? `visible` : `hidden`;
     if (this.state.showFailedLogin) {
       loginFailed = <h3>Your login failed.</h3>
     }
+    let welcomeText = this.state.loggedInAs ? null : (<h2 className={`welcome ${night}`}> Welcome. </h2>);
 
     if (loggedInAs === 'doctor') {
       portal = <DoctorPortal
+        night={night}
         status={this.state.status}
         doctordata={this.state.user}
         patientdata={this.state.patients}>
@@ -96,6 +113,7 @@ class Home extends React.Component {
     }
     else if (loggedInAs === 'patient') {
       portal = <PatientPortal
+        night={night}
         status={this.state.status}
         personaldata={this.state.user}>
       </PatientPortal>
@@ -103,36 +121,50 @@ class Home extends React.Component {
 
 
     return (
-      <div className="row">
-        <div className="col-md-1"></div>
+    <div>
+    <div className={`container-fluid main ${night}`}>
+      <div className="row" className={`main ${night}`}>
+        <div className="col-md-1">
+          <button
+            className={`login-button ${night} switch`}
+            onClick={this.toggleNightMode.bind(this)}>
+            Switch Theme
+          </button>
+        </div>
         <div className="col-md-10">
-          <div className="row header">
+          <div className={`row header ${night}`}>
             <div className="col-md-2"></div>
             <div className="col-md-6">
-              <h2> Welcome. </h2>
+              {welcomeText}
             </div>
           </div>
           {/*Login Here Row*/}
           <div className={showLogin}>
             <div className="col-md-2">  </div>
-            <div className="col-md-10"> <h3> Login Here </h3> </div>
+            <div className="col-md-10">
+              <h3 className={`welcome ${night}`}>
+                Login Here
+              </h3>
+            </div>
           </div>
           {/*Login Form*/}
           <div className={showLogin}>
               <div className="col-md-2">
                 {loginFailed}
               </div>
-              <div className="col-md-4 login-row">
+              <div className={`col-md-4 login-row ${night}`}>
                 <LoginForm
                   status={loggedInAs}
                   type={doctor}
+                  night={night}
                   onLogin={((formData) => this.onLogin(formData, doctor)).bind(this)}>
                 </LoginForm>
               </div>
-              <div className="col-md-4 login-row">
+              <div className={`col-md-4 login-row ${night}`}>
                 <LoginForm
                   status={loggedInAs}
                   type={patient}
+                  night={night}
                   onLogin={((formData) => this.onLogin(formData, patient)).bind(this)}>
                   {/*handleClick.bind(this, i, props)*/}
                 </LoginForm>
@@ -145,6 +177,8 @@ class Home extends React.Component {
         </div>
         <div className="col-md-1"></div>
       </div>
+    </div>
+  </div>
     )
   }
 };

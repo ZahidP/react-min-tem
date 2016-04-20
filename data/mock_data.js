@@ -31,6 +31,10 @@ var data = {
           "key":"167abc", "date":"02-16-2016", "notes":"Good health for this guy."
         }
       ],
+      "metrics": {
+          "A": [85,90,83,82],
+          "B": [155,150,153,152]
+      },
       "documents":["doc_1_pat123"]
     },
     {

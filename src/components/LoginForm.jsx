@@ -13,10 +13,12 @@ class LoginForm extends React.Component {
   }
 
   componentDidMount() {
+
   }
 
   /* non-state methods */
   onChange() {
+
   }
 
   onLogin(e) {
@@ -43,17 +45,17 @@ class LoginForm extends React.Component {
 
   render() {
     let who = (this.props.type === 'doctor') ? 'Doctors' : 'Patients';
-
+    let night = this.props.night;
     return (
       <form onSubmit={this.onLogin.bind(this)}>
-        <h4> {who} </h4>
+        <h2 className={`${who} login-header`}> {who} </h2>
         <div className="form-group">
           <label for="exampleInputEmail1">Username</label>
           <input
             onChange={this.updateUserName.bind(this)}
             value={this.state.username}
             type="input"
-            className="form-control"
+            className={`form-control ${night}`}
             id="exampleInputEmail1"
             placeholder="Username" />
         </div>
@@ -63,7 +65,7 @@ class LoginForm extends React.Component {
             onChange={this.updatePassword.bind(this)}
             value={this.state.password}
             type="password"
-            className="form-control"
+            className={`form-control ${night}`}
             id="exampleInputPassword1"
             placeholder="Password" />
         </div>
